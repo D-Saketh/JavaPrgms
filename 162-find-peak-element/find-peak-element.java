@@ -5,9 +5,16 @@ class Solution {
         if(arr[0] > arr[1]) return 0;
         if(arr[n-1] > arr[n-2]) return n-1;
 
-        for(int i=1; i<n-1; i++){
-            if(arr[i-1] < arr[i] && arr[i+1] < arr[i]){
-                return i;
+        int left = 1, right = n-2;
+        while(left <= right){
+            int mid = (left + right)/2;
+
+            if(arr[mid -1] < arr[mid] && arr[mid +1] < arr[mid]){
+                return mid;
+            }else if(arr[mid -1] < arr[mid]){
+                left = mid +1;
+            }else{
+                right = mid -1;
             }
         }
         return -1;
